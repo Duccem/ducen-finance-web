@@ -1,4 +1,5 @@
 import "@/assets/global.css";
+import '@/modules/shared/infrastructure/config/env';
 import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 
