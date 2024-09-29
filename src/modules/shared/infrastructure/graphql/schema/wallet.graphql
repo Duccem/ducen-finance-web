@@ -20,7 +20,6 @@ type Company {
   id: ID!
   name: String
   image: String
-  cardTypes: [CardType]
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -50,10 +49,11 @@ type CompanyCollection implements Collection {
 }
 
 type Query {
-  wallets(criteria: Criteria): WalletCollection
+  wallets(criteria: Criteria): [Wallet]
   wallet(id: ID!): Wallet
-  currencies(criteria: Criteria): CurrencyCollection
-  companies(criteria: Criteria): CompanyCollection
+  currencies(criteria: Criteria): [Currency]
+  companies(criteria: Criteria): [Company]
+  cardTypes(criteria: Criteria): [CardType]
 }
 
 input WalletInput {
