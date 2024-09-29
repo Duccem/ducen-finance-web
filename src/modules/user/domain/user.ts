@@ -28,8 +28,8 @@ export class User extends Aggregate {
       new Uuid(id),
       new StringValueObject(externalId),
       new UserEmail(email),
-      DateValueObject.today(),
-      DateValueObject.today()
+      DateValueObject.Today(),
+      DateValueObject.Today()
     );
   }
 

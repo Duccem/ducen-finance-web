@@ -7,7 +7,10 @@ export abstract class ValueObject<T> {
   }
 
   equals(other: ValueObject<T>): boolean {
-    return other.constructor.name === this.constructor.name && other.value === this.value;
+    return (
+      other.constructor.name === this.constructor.name &&
+      other.value === this.value
+    );
   }
 
   toString(): string {
@@ -26,20 +29,26 @@ export class BooleanValueObject extends ValueObject<boolean> {
     super(value);
   }
   public validation(value: boolean): void {
-    if (typeof value !== 'boolean') throw new Error(`${value} is not a valid boolean`);
+    if (typeof value !== 'boolean')
+      throw new Error(`${value} is not a valid boolean`);
   }
 }
 
 export class DateValueObject extends ValueObject<Date> {
   constructor(value: string | number | Date) {
-    super(typeof value === 'string' && !value.includes('-') ? new Date(Number(value)) : new Date(value));
+    super(
+      typeof value === 'string' && !value.includes('-')
+        ? new Date(Number(value))
+        : new Date(value)
+    );
   }
 
   public validation(value: Date): void {
-    if (new Date(value).toString() === 'Invalid Date') throw new FormatError(`${value} is not a valid date`);
+    if (new Date(value).toString() === 'Invalid Date')
+      throw new FormatError(`${value} is not a valid date`);
   }
 
-  public static today(): DateValueObject {
+  public static Today(): DateValueObject {
     return new DateValueObject(new Date());
   }
 }

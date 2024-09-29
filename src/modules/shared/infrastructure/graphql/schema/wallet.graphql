@@ -1,0 +1,72 @@
+type Wallet {
+  id: ID!
+  name: String
+  image: String
+  balance: Float
+  currency: Currency
+  company: Company
+  cardType: CardType
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Currency {
+  id: ID!
+  name: String
+  symbol: String
+}
+
+type Company {
+  id: ID!
+  name: String
+  image: String
+  cardTypes: [CardType]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type CardType {
+  id: ID!
+  name: String
+  image: String
+}
+
+type WalletCollection implements Collection {
+  totalCount: Int
+  pageInfo: PageInfo
+  items: [Wallet]
+}
+
+type CurrencyCollection implements Collection {
+  totalCount: Int
+  pageInfo: PageInfo
+  items: [Currency]
+}
+
+type CompanyCollection implements Collection {
+  totalCount: Int
+  pageInfo: PageInfo
+  items: [Company]
+}
+
+type Query {
+  wallets(criteria: Criteria): WalletCollection
+  wallet(id: ID!): Wallet
+  currencies(criteria: Criteria): CurrencyCollection
+  companies(criteria: Criteria): CompanyCollection
+}
+
+input WalletInput {
+  id: ID!
+  name: String
+  image: String
+  balance: Float
+  currencyId: ID!
+  companyId: ID!
+  cardTypeId: ID!
+}
+
+type Mutation {
+  saveWallet(wallet: WalletInput!): Void
+  deleteWallet(id: ID!): Void
+}
