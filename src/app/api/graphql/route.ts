@@ -1,4 +1,5 @@
 import { getSchema } from '@/modules/shared/infrastructure/graphql/schema';
+import { resolvers as usersResolver } from '@/modules/user/presentation/resolvers';
 import { ApolloServer } from '@apollo/server';
 import { startServerAndCreateNextHandler } from '@as-integrations/next';
 import { DateTimeResolver, VoidResolver } from 'graphql-scalars';
@@ -8,6 +9,10 @@ const resolvers = {
     ping: () => {
       return 'pong';
     },
+    ...usersResolver.queries,
+  },
+  Mutation: {
+    ...usersResolver.mutations,
   },
 };
 const apolloServer = new ApolloServer({
