@@ -1,0 +1,39 @@
+enum MovementType {
+  INCOME
+  EXPENSE
+}
+
+type Category {
+  id: ID!
+  name: String
+  type: MovementType
+}
+
+type Movement {
+  id: ID!
+  amount: Float
+  comment: String
+  type: MovementType
+  category: Category
+  wallet: Wallet
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input MovementInput {
+  id: ID!
+  amount: Float!
+  comment: String
+  type: MovementType!
+  categoryId: ID!
+  walletId: ID!
+}
+
+type Query {
+  movements: [Movement]
+  movement(id: ID!): Movement
+}
+
+type Mutation {
+  createMovement(input: MovementInput!): Void
+}

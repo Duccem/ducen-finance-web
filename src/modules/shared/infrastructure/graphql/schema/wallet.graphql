@@ -30,24 +30,6 @@ type CardType {
   image: String
 }
 
-type WalletCollection implements Collection {
-  totalCount: Int
-  pageInfo: PageInfo
-  items: [Wallet]
-}
-
-type CurrencyCollection implements Collection {
-  totalCount: Int
-  pageInfo: PageInfo
-  items: [Currency]
-}
-
-type CompanyCollection implements Collection {
-  totalCount: Int
-  pageInfo: PageInfo
-  items: [Company]
-}
-
 type Query {
   wallets(criteria: Criteria): [Wallet]
   wallet(id: ID!): Wallet
